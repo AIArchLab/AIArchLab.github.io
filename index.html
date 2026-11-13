@@ -4,19 +4,73 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AIArchLab</title>
-<link rel="canonical" href="https://github.com/AIArchLab">
-<meta http-equiv="refresh" content="0; url=https://github.com/AIArchLab">
+<meta name="description" content="AIArchLab. Applied AI for organisations that get audited.">
 <style>
-  html,body{height:100%;margin:0}
-  body{display:flex;align-items:center;justify-content:center;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",Helvetica,Arial,sans-serif;
-    color:#16181d;background:#fff}
-  a{color:#1d3a8a;text-decoration:none;border-bottom:1px solid rgba(29,58,138,.3)}
-  p{font-size:15px;letter-spacing:.02em}
+  :root{--ink:#15171c;--muted:#6b7280;--line:#e6e8ec;--accent:#1a3a8f}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.7}
+  .wrap{max-width:720px;margin:0 auto;padding:72px 24px 88px}
+  .mark{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 26px}
+  h1{font-size:38px;line-height:1.24;letter-spacing:-.02em;font-weight:700;margin:0 0 18px}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lede{font-size:18px;color:#3f444d;margin:0 0 8px;max-width:34em}
+  .meta{font-size:14px;color:var(--muted);margin:0}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 22px}
+  a.card{display:block;text-decoration:none;color:inherit;padding:20px 0;border-bottom:1px solid var(--line)}
+  a.card:first-of-type{border-top:1px solid var(--line)}
+  a.card:hover .name{color:var(--accent)}
+  .name{font-size:19px;font-weight:650;margin:0 0 4px;transition:color .15s}
+  .desc{font-size:15px;color:var(--muted);margin:0}
+  .foot{margin-top:52px;font-size:15px;color:var(--muted)}
+  .foot a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(26,58,143,.28)}
+  @media (max-width:520px){
+    .wrap{padding:52px 20px 64px}
+    h1{font-size:30px}
+    .lede{font-size:17px}
+  }
 </style>
 </head>
 <body>
-<p>AIArchLab &middot; <a href="https://github.com/AIArchLab">github.com/AIArchLab</a></p>
-<script>location.replace("https://github.com/AIArchLab");</script>
+<div class="wrap">
+
+  <p class="mark">AIArchLab</p>
+
+  <h1>Applied AI for organisations that get <em>audited</em>.</h1>
+  <p class="lede">We put AI agents into production where audit, access control and rollback are not optional. Nothing is called delivered until someone else can re-run it and get the same result.</p>
+  <p class="meta">Taipei, Taiwan</p>
+
+  <hr>
+
+  <h2>Selected work</h2>
+
+  <a class="card" href="https://github.com/AIArchLab/weirwright">
+    <p class="name">weirwright</p>
+    <p class="desc">Executable change-control gates. Evidence in, verdict out.</p>
+  </a>
+
+  <a class="card" href="https://github.com/AIArchLab/works">
+    <p class="name">works</p>
+    <p class="desc">Finished work, one folder per piece, each with its own verification record.</p>
+  </a>
+
+  <a class="card" href="https://github.com/AIArchLab/recruitflow-core-portfolio">
+    <p class="name">recruitflow-core</p>
+    <p class="desc">Hiring pipeline engine. Pure-function state machine with weighted scoring.</p>
+  </a>
+
+  <a class="card" href="/splice-handoff.html">
+    <p class="name">Splice Handoff Broker</p>
+    <p class="desc">Cross-runtime task handoff. Leases, fencing tokens, audit trail. Design notes and test evidence.</p>
+  </a>
+
+  <p class="foot">
+    <a href="https://github.com/AIArchLab">github.com/AIArchLab</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:aiarchlabtw@gmail.com">aiarchlabtw@gmail.com</a>
+  </p>
+
+</div>
 </body>
 </html>

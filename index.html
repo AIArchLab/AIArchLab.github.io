@@ -4,103 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AIArchLab</title>
-<meta name="description" content="AIArchLab is an independent consulting studio for enterprise AI adoption. Governance as executable control, proven in a small pilot before anything scales.">
+<link rel="canonical" href="https://github.com/AIArchLab">
+<meta http-equiv="refresh" content="0; url=https://github.com/AIArchLab">
 <style>
-  :root{--ink:#16181d;--muted:#5c626e;--line:#e2e5ea;--soft:#f7f8fa;--accent:#1d3a8a}
-  *{box-sizing:border-box}
-  body{margin:0;background:#fff;color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Helvetica,Arial,sans-serif;
-    font-size:17px;line-height:1.72}
-  .wrap{max-width:760px;margin:0 auto;padding:64px 24px 96px}
-  header{border-bottom:1px solid var(--line);padding-bottom:34px;margin-bottom:44px}
-  h1{font-size:36px;margin:0 0 6px;font-weight:700;letter-spacing:-.015em}
-  .sub{font-size:16px;color:var(--muted);margin:0 0 20px}
-  .claim{font-size:19px;font-weight:600;margin:0 0 18px;line-height:1.55}
-  .lede{color:var(--muted);margin:0}
-  h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:50px 0 16px}
-  p{margin:0 0 14px}
-  ul{margin:0;padding:0;list-style:none}
-  ol{margin:0;padding-left:22px}
-  ol li{margin-bottom:8px}
-  .rule li{padding:14px 0;border-bottom:1px solid var(--line)}
-  .rule li:first-child{border-top:1px solid var(--line)}
-  .rule b{font-weight:650}
-  .rule span{color:var(--muted);display:block;font-size:15.5px;margin-top:2px}
-  .work li{padding:15px 0;border-bottom:1px solid var(--line)}
-  .work li:first-child{border-top:1px solid var(--line)}
-  .work .name{font-weight:650}
-  .work .desc{color:var(--muted);font-size:15.5px;display:block;margin-top:3px}
-  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(29,58,138,.28)}
-  a:hover{border-bottom-color:var(--accent)}
-  .box{background:var(--soft);border:1px solid var(--line);padding:18px 20px;margin:0 0 14px}
-  .box b{font-weight:650}
-  .zh{color:var(--muted);font-size:15.5px;line-height:1.85;border-top:1px solid var(--line);padding-top:20px;margin-top:44px}
-  footer{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
-  @media(max-width:520px){.wrap{padding:44px 20px 72px}h1{font-size:29px}.claim{font-size:17px}}
+  html,body{height:100%;margin:0}
+  body{display:flex;align-items:center;justify-content:center;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",Helvetica,Arial,sans-serif;
+    color:#16181d;background:#fff}
+  a{color:#1d3a8a;text-decoration:none;border-bottom:1px solid rgba(29,58,138,.3)}
+  p{font-size:15px;letter-spacing:.02em}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-<header>
-  <h1>AIArchLab</h1>
-  <p class="sub">Architecture, Development, and Governance with AI Agent Team</p>
-  <p class="claim">From strategy to production: it runs in production, it stays under control, and it can be rolled back.</p>
-  <p class="lede">AIArchLab is an independent consulting studio for enterprise AI adoption. We assess readiness, design governance as executable control, and prove value in a small pilot before anything scales.</p>
-</header>
-
-<h2>What we believe</h2>
-<ol>
-  <li>Governance = policy + executable checks.</li>
-  <li>Reputation is no substitute for verification.</li>
-  <li>Governance must manage the actual operating state, not the declared state.</li>
-</ol>
-
-<h2>How we work</h2>
-<ul class="rule">
-  <li><b>Small pilot first.</b><span>No program scales before a pilot has run in production and survived it.</span></li>
-  <li><b>Evidence over promises.</b><span>Every claim ships with something you can run, read, or reproduce.</span></li>
-  <li><b>Reversible by design.</b><span>Every change can be rolled back; every decision leaves an audit trail.</span></li>
-  <li><b>De-identified by default.</b><span>Public materials never name clients, members, or budgets.</span></li>
-</ul>
-
-<h2>What we do</h2>
-<div class="box">
-  <p style="margin:0 0 8px"><b>AI Readiness Assessment</b> &nbsp;two-week remote engagement</p>
-  <p style="margin:0;color:var(--muted);font-size:15.5px">Process inventory, data boundaries, pilot design, and an AI usage policy. Starts with a 30-minute scoping call.</p>
-</div>
-
-<h2>What we publish here</h2>
-<p>Works, not articles. Tools you can run and evidence you can inspect.</p>
-<ul class="work">
-  <li>
-    <span class="name"><a href="https://github.com/AIArchLab/weirwright">weirwright</a></span>
-    <span class="desc">Executable change-control gates. Evidence in, verdict out. MIT licensed.</span>
-  </li>
-  <li>
-    <span class="name"><a href="https://github.com/AIArchLab/works">works</a></span>
-    <span class="desc">Finished works, one folder per work, each with its own README and tests. MIT licensed.</span>
-  </li>
-  <li>
-    <span class="name"><a href="splice-handoff.html">Splice Handoff Broker</a></span>
-    <span class="desc">Handing a long-running agent task between runtimes without running it twice. Leases, fencing, audit record.</span>
-  </li>
-</ul>
-
-<h2>Studio</h2>
-<p>AIArchLab is led by its Founder and run as a small flat studio.</p>
-<p>
-  Web &nbsp;<a href="https://www.tasker.com.tw/workroom/aiarchlab">tasker.com.tw/workroom/aiarchlab</a><br>
-  GitHub &nbsp;<a href="https://github.com/AIArchLab">github.com/AIArchLab</a>
-</p>
-
-<div class="zh">中文摘要：AIArchLab 是一間獨立工作室，做企業導入 AI。做法是把治理寫成可執行的檢查，先在小規模試點證明可行，再放大。公開資料不指名客戶、成員與預算。</div>
-
-<footer>
-  <span>AIArchLab &middot; Architecture, Development, and Governance with AI Agent Team</span>
-  <span><a href="https://github.com/AIArchLab">github.com/AIArchLab</a></span>
-</footer>
-
-</div>
+<p>AIArchLab &middot; <a href="https://github.com/AIArchLab">github.com/AIArchLab</a></p>
+<script>location.replace("https://github.com/AIArchLab");</script>
 </body>
 </html>

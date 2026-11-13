@@ -3,106 +3,107 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Splice Handoff Broker - design notes and test evidence</title>
+<title>AIArchLab | Applied AI for regulated organisations</title>
+<meta name="description" content="AIArchLab puts AI agents into production where audit, access control and rollback are not optional. Every deliverable can be re-run and verified by a third party.">
 <style>
-:root{--ink:#1c2430;--mute:#5b6675;--line:#d9dee5;--bg:#fbfbfa;--acc:#1f5eff;--ok:#157347}
-*{box-sizing:border-box}
-body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);background:var(--bg)}
-main{max-width:860px;margin:0 auto;padding:32px 20px 64px}@media(max-width:600px){main{padding:20px 14px 48px}h1{font-size:1.5rem}.flow span{padding:4px 8px}}
-h1{font-size:1.8rem;line-height:1.25;margin:0 0 8px}
-h2{font-size:1.2rem;margin:36px 0 10px;border-top:1px solid var(--line);padding-top:20px}
-.sub{color:var(--mute);margin:0 0 20px}
-.note{background:#f1f4f9;border-left:3px solid var(--acc);padding:10px 14px;margin:16px 0;font-size:.95rem}
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}.tw table{margin:0;min-width:560px}code{word-break:break-word}table{width:100%;border-collapse:collapse;font-size:.93rem;margin:10px 0}
-th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
-th{background:#f1f3f6}
-.pass{color:var(--ok);font-weight:600;white-space:nowrap}
-.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
-.flow span{border:1px solid var(--acc);border-radius:6px;padding:6px 10px;background:#fff}
-.flow i{font-style:normal;color:var(--mute)}
-details{border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:8px 0;background:#fff}
-summary{cursor:pointer;font-weight:600}
-code{background:#eef0f3;padding:1px 5px;border-radius:4px;font-size:.9em}
-ul{padding-left:20px}
-
-a{color:var(--acc)}footer{margin-top:40px;color:var(--mute);font-size:.88rem}
-@media(max-width:600px){.tw{overflow:visible}.tw table{min-width:0}table,tbody,tr,td{display:block;width:100%}tr:first-child{display:none}tr{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;background:#fff}td{border:0;border-bottom:1px solid #eef0f3;padding:6px 10px}td:last-child{border-bottom:0}td::before{content:attr(data-l);display:block;font-size:.75rem;color:var(--mute);text-transform:uppercase;letter-spacing:.03em}}.btn{display:inline-block;background:var(--acc);color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600}.small{color:var(--mute);font-size:.9rem;margin-top:-4px}pre{background:#f1f3f6;border:1px solid var(--line);border-radius:6px;padding:10px 12px;overflow-x:auto}</style>
+  :root{
+    --ink:#16181d; --muted:#5c626e; --line:#e2e5ea; --bg:#ffffff; --soft:#f7f8fa; --accent:#1d3a8a;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.72;letter-spacing:.01em;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:64px 24px 96px}
+  header{border-bottom:1px solid var(--line);padding-bottom:34px;margin-bottom:44px}
+  .brand{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{font-size:34px;line-height:1.25;margin:14px 0 0;font-weight:700;letter-spacing:-.01em}
+  .lede{font-size:19px;color:var(--muted);margin:16px 0 0;max-width:56ch}
+  h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+     font-weight:700;margin:52px 0 18px}
+  p{margin:0 0 14px}
+  ul{margin:0;padding:0;list-style:none}
+  .rule li{padding:15px 0;border-bottom:1px solid var(--line)}
+  .rule li:first-child{border-top:1px solid var(--line)}
+  .rule b{display:block;font-weight:650;margin-bottom:2px}
+  .rule span{color:var(--muted);font-size:15.5px;display:block}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(29,58,138,.28)}
+  a:hover{border-bottom-color:var(--accent)}
+  .work li{padding:16px 0;border-bottom:1px solid var(--line)}
+  .work li:first-child{border-top:1px solid var(--line)}
+  .work .name{font-weight:650}
+  .work .desc{color:var(--muted);font-size:15.5px;display:block;margin-top:3px}
+  .meta{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+        font-size:13px;color:var(--muted);background:var(--soft);
+        border:1px solid var(--line);padding:16px 18px;margin:0 0 14px;line-height:1.85}
+  .meta b{color:var(--ink);font-weight:600}
+  .zh{color:var(--muted);font-size:16px;line-height:1.85;margin-top:6px}
+  footer{margin-top:72px;padding-top:26px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
+  footer a{color:var(--muted)}
+  @media (max-width:520px){
+    .wrap{padding:44px 20px 72px}
+    h1{font-size:27px} .lede{font-size:17px}
+  }
+</style>
 </head>
 <body>
-<main>
-<h1>Splice Handoff Broker</h1>
-<p class="sub">Design notes and test evidence for handing a long-running agent task from one process to another without running it twice. Version 0.2.4.</p>
+<div class="wrap">
 
-<div class="note">This page is a write-up. The broker itself does not run on this page, and the package is not offered for download here. The test results below come from the author's own runs of the test suites shipped with the package.</div>
+<header>
+  <div class="brand">AIArchLab</div>
+  <h1>Applied AI for organisations that get audited.</h1>
+  <p class="lede">We put AI agents into production where audit, access control and rollback are not optional. Nothing is called delivered until someone else can re-run it and get the same result.</p>
+</header>
 
-<h2>The problem</h2>
-<p>Long agent sessions die mid-task. The usual recovery is a person copying context into a new session and hoping the old one is really gone. Three failures follow:</p>
-<ol>
-<li><strong>Both run at once.</strong> The old process wakes up and writes the same result again.</li>
-<li><strong>Handoff "completed" but nobody took over.</strong> A message was delivered into the void.</li>
-<li><strong>Context silently truncated.</strong> A summary keeps the last few turns and drops the acceptance criteria from an hour ago.</li>
-</ol>
-<p>Splice handles the first two mechanically. For the third it makes the loss visible: the snapshot is the executor's own structured state, content-addressed with sha256 and immutable, so what was handed over can be re-read and compared later. It does not make the snapshot complete. What goes into it is the executor's decision.</p>
-
-<h2>The design in one picture</h2>
-<p>Handoff is treated as a transaction, not a message:</p>
-<div class="flow"><span>archive</span><i>&rarr;</i><span>claim</span><i>&rarr;</i><span>acknowledge</span><i>&rarr;</i><span>ownership moves</span></div>
-<ul>
-<li>A <strong>fence</strong> is checked on writes. A write carrying a stale fence is rejected, so a replaced executor is locked out mechanically.</li>
-<li>Ownership moves at the <strong>ack</strong>, not at the claim. A crash between claim and ack leaves the task recoverable by a third executor.</li>
-<li>Every step carries an <strong>idempotency key</strong>. A retried step is recorded at most once.</li>
-<li>Every transition goes into a <strong>hash-chained audit log</strong> that can be verified afterwards.</li>
+<h2>What we hold to</h2>
+<ul class="rule">
+  <li><b>Governance is executable, not written.</b><span>Policy becomes a check the system runs on itself. If it is only a document, it is not a control.</span></li>
+  <li><b>Evidence over claims.</b><span>Every artefact ships with a re-runnable command, a hash and a read-back. Third parties verify it, not us.</span></li>
+  <li><b>Small pilot first.</b><span>Nothing scales before it has run in production and survived an incident review.</span></li>
 </ul>
 
-<h2>Where the idea comes from</h2>
-<p>Handing ownership between processes safely is not new. The core mechanism is the fencing token described by Martin Kleppmann in <a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html">How to do distributed locking</a> (2016): each time a lock changes hands it carries a number that only increases, and the resource rejects requests carrying an older number.</p>
-<p>What Splice adds around that idea: the handoff is a four-step transaction (archive, claim, acknowledge, ownership moves), so a crash between claim and ack leaves the task recoverable. Snapshots are content-addressed with sha256 and checked on read. Every transition goes into a hash-chained audit log. Each step carries an idempotency key, so a retried step is recorded once.</p>
-<p>What it does not add: fencing covers writes that pass through the broker. A stale process can still call an external system directly. That gap needs conditional writes or idempotency keys at the destination, and a broker cannot close it for you. The package says the same: your effect must be applied under the same key.</p>
-
-<h2>Protocol at a glance</h2>
-<p>States: <code>active</code> &rarr; <code>handoff_pending</code> &rarr; <code>handed_off</code> &rarr; <code>completed</code>.</p>
-<p>Every write carries a holder and a fence. A write is accepted only when the fence equals the task's current epoch and that holder owns a live lease. Any ownership transfer increments the epoch, so the previous owner's writes fail instead of racing.</p>
-<div class="tw"><table><tr><th>Step</th><th>Call</th><th>Effect</th></tr><tr><td data-l="Step">archive</td><td data-l="Call"><code>POST /v1/tasks/{id}/handoff</code></td><td data-l="Effect">Stores the snapshot by sha256, bumps the epoch, clears owner and lease, state becomes <code>handoff_pending</code></td></tr><tr><td data-l="Step">claim</td><td data-l="Call"><code>POST /v1/handoffs/{id}/claim</code></td><td data-l="Effect">New executor takes a lease, bumps the epoch again, receives the snapshot</td></tr><tr><td data-l="Step">ack</td><td data-l="Call"><code>POST /v1/handoffs/{id}/ack</code></td><td data-l="Effect">State becomes <code>handed_off</code></td></tr><tr><td data-l="Step">work</td><td data-l="Call"><code>POST /v1/tasks/{id}/write</code></td><td data-l="Effect">Fenced writes, deduplicated by <code>idempotency_key</code></td></tr></table></div>
-<p>Also: <code>POST /v1/tasks</code> (create), <code>/lease</code>, <code>/takeover</code> and <code>/complete</code> on a task; <code>GET</code> on tasks, handoffs, <code>/v1/audit</code>, <code>/v1/audit/verify</code>, <code>/v1/health</code>, <code>/v1/protocol</code>.</p>
-<div class="tw"><table><tr><th>Response</th><th>Meaning</th></tr><tr><td data-l="Response"><code>409 stale_fence</code></td><td data-l="Meaning">Your fence is older than the current epoch</td></tr><tr><td data-l="Response"><code>409 no_valid_lease</code></td><td data-l="Meaning">Your lease expired</td></tr><tr><td data-l="Response"><code>409 lease_held</code></td><td data-l="Meaning">Another holder's lease is still live</td></tr><tr><td data-l="Response"><code>409 must_claim_handoff</code></td><td data-l="Meaning">The task is mid-handoff; claim it first</td></tr><tr><td data-l="Response"><code>409 handoff_claimed</code> / <code>handoff_already_acked</code></td><td data-l="Meaning">The handoff was already taken or closed</td></tr><tr><td data-l="Response"><code>409 bad_state</code> / <code>task_completed</code></td><td data-l="Meaning">Call not valid in the current state</td></tr><tr><td data-l="Response"><code>410 snapshot_corrupted</code> / <code>snapshot_missing</code></td><td data-l="Meaning">Stored snapshot fails its hash or is absent</td></tr><tr><td data-l="Response"><code>400 unsupported_protocol_version</code></td><td data-l="Meaning">Unsupported protocol version declared</td></tr></table></div>
-
-<h2>Guarantees and how each one is checked</h2>
-<div class="tw"><table><tr><th>Guarantee</th><th>Mechanism</th></tr><tr><td data-l="Guarantee">An executor that lost ownership can never write again</td><td data-l="Mechanism">Fence checked on writes; a stale fence is rejected (409 stale_fence)</td></tr><tr><td data-l="Guarantee">A retried step never executes twice</td><td data-l="Mechanism">Idempotency key; a repeated key reports deduplicated</td></tr><tr><td data-l="Guarantee">A snapshot cannot be silently corrupted</td><td data-l="Mechanism">Content-addressed with sha256; a tampered snapshot is rejected on read</td></tr><tr><td data-l="Guarantee">Handoff is not "message sent"</td><td data-l="Mechanism">archive, claim, ack, then ownership</td></tr><tr><td data-l="Guarantee">A crashed executor does not block the task forever</td><td data-l="Mechanism">Lease TTL and takeover</td></tr><tr><td data-l="Guarantee">Every transition is auditable</td><td data-l="Mechanism">Hash-chained audit log</td></tr></table></div>
-
-<h2>Test evidence</h2>
-<p>The package ships three suites. Totals from the author's runs of version 0.2.4:</p>
-<div class="tw"><table><tr><th>Suite</th><th>Result</th></tr><tr><td data-l="Suite">Python and Node.js executors, cross-runtime, against a live broker</td><td data-l="Result" class="pass">30 / 30 passed</td></tr><tr><td data-l="Suite">Two independent MCP runtimes, plain HTTP</td><td data-l="Result" class="pass">13 / 13 passed</td></tr><tr><td data-l="Suite">Two independent MCP runtimes, HTTPS with bearer token</td><td data-l="Result" class="pass">14 / 14 passed</td></tr></table></div>
-<p>Scenarios covered by the cross-runtime suite:</p>
-<div class="tw"><table><tr><th>Scenario</th><th>Result</th></tr><tr><td data-l="Scenario">Python executor hands off mid-task, Node.js executor resumes from the snapshot and completes</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Stale fence rejected after ownership moved; the rejected write leaves no effect</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Idempotent replay: same key twice gives one effect, second call reports deduplicated</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Two claimers race: one wins</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Crash before ack: lease expires, a different runtime takes over, the crashed executor is locked out</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Crash after ack: replay is deduplicated, effect count stays correct</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Snapshot tampered on disk: rejected on read</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Missing token rejected; unknown API version and unsupported protocol header rejected</td><td data-l="Result" class="pass">PASS</td></tr><tr><td data-l="Scenario">Audit hash chain verifies; a tampered audit row is detected at the exact entry</td><td data-l="Result" class="pass">PASS</td></tr></table></div>
-<p>The package is not offered for download on this page. If you hold it, extract it and run one command from the extracted folder:</p>
-<pre><code>bash tools/run_tests.sh</code></pre>
-<p>It runs the three suites above and prints <code>RESULT: ALL GREEN</code> or <code>RESULT: FAIL</code>. It is fail-closed: a missing test file exits 2 and a failing suite exits 1. It needs Python 3.10+, Node 18+ and OpenSSL, and it needs no external network or external service (the tests use a local 127.0.0.1 broker). It writes under <code>out/</code> and <code>tests/tls/</code> in the package folder, plus a log at <code>/tmp/splice_run.out</code> and temporary <code>splice-e2e-*</code> state directories in the system temp directory. Author runs used CPython 3.10.12 and Node 22.</p>
-
-<h2>What it is not</h2>
-<details open><summary>Scope limits stated by the package itself</summary>
-<ul>
-<li>Not a task queue or a workflow engine. It moves ownership of one task between executors. Scheduling stays where you already do it.</li>
-<li>Not a context store for the model. Splice makes the snapshot immutable and verifiable, not complete.</li>
-<li>No adapter for any vendor agent runtime. Nothing has been validated against a specific runtime's session model.</li>
-<li>No clustering. One broker owns the SQLite file.</li>
-<li>No UI. Operations are HTTP plus the audit log.</li>
-<li>No exactly-once delivery into your own system. Splice records each idempotency key at most once; your effect must be applied under that key.</li>
-<li>TLS termination and bearer-token auth are supported. You bring the certificate; the broker does not issue or rotate certificates.</li>
-<li>No automatic retry scheduler. A dead executor is recovered by lease expiry and takeover, which you or your supervisor must trigger.</li>
-<li>Windows is untested.</li>
+<h2>Selected work</h2>
+<ul class="work">
+  <li>
+    <span class="name"><a href="https://github.com/AIArchLab/weirwright">weirwright</a></span>
+    <span class="desc">Executable change-control gates. Evidence in, verdict out.</span>
+  </li>
+  <li>
+    <span class="name"><a href="https://github.com/AIArchLab/works">works</a></span>
+    <span class="desc">Finished work: governance tools and delivery systems, each with its verification record.</span>
+  </li>
+  <li>
+    <span class="name"><a href="https://github.com/AIArchLab/recruitflow-core-portfolio">recruitflow-core</a></span>
+    <span class="desc">Hiring workflow engine. Pure-function state machine with weighted scoring.</span>
+  </li>
+  <li>
+    <span class="name"><a href="splice-handoff.html">Splice Handoff Broker</a></span>
+    <span class="desc">Handing a long-running agent task between runtimes without running it twice. Leases, fencing, audit record.</span>
+  </li>
 </ul>
-</details>
 
-<h2>What it costs to adopt</h2>
-<div class="tw"><table><tr><th>Item</th><th>Fact from the package</th></tr><tr><td data-l="Item">Broker</td><td data-l="Fact from the package">One Python process, standard library only (535 lines)</td></tr><tr><td data-l="Item">State</td><td data-l="Fact from the package">One SQLite file plus a snapshot directory</td></tr><tr><td data-l="Item">Default port</td><td data-l="Fact from the package">8088; optional bearer token; optional TLS with your own certificate</td></tr><tr><td data-l="Item">Adapters shipped</td><td data-l="Fact from the package">Python (158 lines), Node.js (115 lines), MCP (198 lines)</td></tr><tr><td data-l="Item">If your executor cannot produce a structured snapshot of its own state</td><td data-l="Fact from the package">That is the real cost, not the protocol</td></tr></table></div>
+<h2>Who is behind it</h2>
+<p>Allen Chia. Twenty-seven years in technology, most of it inside banks and insurers in Taiwan, Japan and China. VP at HSBC Taiwan, Head of Technology Services at Prudential Taiwan, and the most senior IT person at LINE Bank's preparatory office before that bank had a licence. Building AI systems since 2020.</p>
 
+<div class="zh">
+  中文摘要：把 AI agent 放進需要被稽核的組織裡。交付的定義不是「跑給你看」，而是「別人能重跑並得到同樣結果」。做過的東西都附可重跑指令與雜湊，第三方自己驗。
+</div>
 
+<h2>Contact</h2>
+<p class="meta">
+  <b>email</b> &nbsp;aiarchlabtw@gmail.com<br>
+  <b>github</b> &nbsp;github.com/AIArchLab<br>
+  <b>profile</b> &nbsp;linkedin.com/in/allenchia
+</p>
 
-<h2>Enquiries</h2>
-<p><a class="btn" href="https://www.tasker.com.tw/workroom/aiarchlab">Contact AIArchLab on Tasker</a></p>
-<p class="small">This is a contact link, not an order or payment page.</p>
+<footer>
+  <span>AIArchLab &middot; AI Architecture Laboratory &middot; Taipei, Taiwan</span>
+  <span><a href="https://github.com/AIArchLab">github.com/AIArchLab</a></span>
+</footer>
 
-<footer>AIArchLab. Splice Handoff Broker 0.2.4 design notes. Static page; no data is collected. More finished works: <a href="https://github.com/AIArchLab/works">github.com/AIArchLab/works</a></footer>
-</main>
+</div>
 </body>
 </html>

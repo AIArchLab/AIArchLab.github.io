@@ -3,81 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AIArchLab | Applied AI for regulated organisations</title>
-<meta name="description" content="AIArchLab puts AI agents into production where audit, access control and rollback are not optional. Every deliverable can be re-run and verified by a third party.">
+<title>AIArchLab</title>
+<meta name="description" content="AIArchLab is an independent consulting studio for enterprise AI adoption. Governance as executable control, proven in a small pilot before anything scales.">
 <style>
-  :root{
-    --ink:#16181d; --muted:#5c626e; --line:#e2e5ea; --bg:#ffffff; --soft:#f7f8fa; --accent:#1d3a8a;
-  }
+  :root{--ink:#16181d;--muted:#5c626e;--line:#e2e5ea;--soft:#f7f8fa;--accent:#1d3a8a}
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0;background:var(--bg);color:var(--ink);
+  body{margin:0;background:#fff;color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Helvetica,Arial,sans-serif;
-    font-size:17px;line-height:1.72;letter-spacing:.01em;
-  }
+    font-size:17px;line-height:1.72}
   .wrap{max-width:760px;margin:0 auto;padding:64px 24px 96px}
   header{border-bottom:1px solid var(--line);padding-bottom:34px;margin-bottom:44px}
-  .brand{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  h1{font-size:34px;line-height:1.25;margin:14px 0 0;font-weight:700;letter-spacing:-.01em}
-  .lede{font-size:19px;color:var(--muted);margin:16px 0 0;max-width:56ch}
-  h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
-     font-weight:700;margin:52px 0 18px}
+  h1{font-size:36px;margin:0 0 6px;font-weight:700;letter-spacing:-.015em}
+  .sub{font-size:16px;color:var(--muted);margin:0 0 20px}
+  .claim{font-size:19px;font-weight:600;margin:0 0 18px;line-height:1.55}
+  .lede{color:var(--muted);margin:0}
+  h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:50px 0 16px}
   p{margin:0 0 14px}
   ul{margin:0;padding:0;list-style:none}
-  .rule li{padding:15px 0;border-bottom:1px solid var(--line)}
+  ol{margin:0;padding-left:22px}
+  ol li{margin-bottom:8px}
+  .rule li{padding:14px 0;border-bottom:1px solid var(--line)}
   .rule li:first-child{border-top:1px solid var(--line)}
-  .rule b{display:block;font-weight:650;margin-bottom:2px}
-  .rule span{color:var(--muted);font-size:15.5px;display:block}
-  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(29,58,138,.28)}
-  a:hover{border-bottom-color:var(--accent)}
-  .work li{padding:16px 0;border-bottom:1px solid var(--line)}
+  .rule b{font-weight:650}
+  .rule span{color:var(--muted);display:block;font-size:15.5px;margin-top:2px}
+  .work li{padding:15px 0;border-bottom:1px solid var(--line)}
   .work li:first-child{border-top:1px solid var(--line)}
   .work .name{font-weight:650}
   .work .desc{color:var(--muted);font-size:15.5px;display:block;margin-top:3px}
-  .meta{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-        font-size:13px;color:var(--muted);background:var(--soft);
-        border:1px solid var(--line);padding:16px 18px;margin:0 0 14px;line-height:1.85}
-  .meta b{color:var(--ink);font-weight:600}
-  .zh{color:var(--muted);font-size:16px;line-height:1.85;margin-top:6px}
-  footer{margin-top:72px;padding-top:26px;border-top:1px solid var(--line);
-         color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
-  footer a{color:var(--muted)}
-  @media (max-width:520px){
-    .wrap{padding:44px 20px 72px}
-    h1{font-size:27px} .lede{font-size:17px}
-  }
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(29,58,138,.28)}
+  a:hover{border-bottom-color:var(--accent)}
+  .box{background:var(--soft);border:1px solid var(--line);padding:18px 20px;margin:0 0 14px}
+  .box b{font-weight:650}
+  .zh{color:var(--muted);font-size:15.5px;line-height:1.85;border-top:1px solid var(--line);padding-top:20px;margin-top:44px}
+  footer{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+  @media(max-width:520px){.wrap{padding:44px 20px 72px}h1{font-size:29px}.claim{font-size:17px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
-  <div class="brand">AIArchLab</div>
-  <h1>Applied AI for organisations that get audited.</h1>
-  <p class="lede">We put AI agents into production where audit, access control and rollback are not optional. Nothing is called delivered until someone else can re-run it and get the same result.</p>
+  <h1>AIArchLab</h1>
+  <p class="sub">Architecture, Development, and Governance with AI Agent Team</p>
+  <p class="claim">From strategy to production: it runs in production, it stays under control, and it can be rolled back.</p>
+  <p class="lede">AIArchLab is an independent consulting studio for enterprise AI adoption. We assess readiness, design governance as executable control, and prove value in a small pilot before anything scales.</p>
 </header>
 
-<h2>What we hold to</h2>
+<h2>What we believe</h2>
+<ol>
+  <li>Governance = policy + executable checks.</li>
+  <li>Reputation is no substitute for verification.</li>
+  <li>Governance must manage the actual operating state, not the declared state.</li>
+</ol>
+
+<h2>How we work</h2>
 <ul class="rule">
-  <li><b>Governance is executable, not written.</b><span>Policy becomes a check the system runs on itself. If it is only a document, it is not a control.</span></li>
-  <li><b>Evidence over claims.</b><span>Every artefact ships with a re-runnable command, a hash and a read-back. Third parties verify it, not us.</span></li>
-  <li><b>Small pilot first.</b><span>Nothing scales before it has run in production and survived an incident review.</span></li>
+  <li><b>Small pilot first.</b><span>No program scales before a pilot has run in production and survived it.</span></li>
+  <li><b>Evidence over promises.</b><span>Every claim ships with something you can run, read, or reproduce.</span></li>
+  <li><b>Reversible by design.</b><span>Every change can be rolled back; every decision leaves an audit trail.</span></li>
+  <li><b>De-identified by default.</b><span>Public materials never name clients, members, or budgets.</span></li>
 </ul>
 
-<h2>Selected work</h2>
+<h2>What we do</h2>
+<div class="box">
+  <p style="margin:0 0 8px"><b>AI Readiness Assessment</b> &nbsp;two-week remote engagement</p>
+  <p style="margin:0;color:var(--muted);font-size:15.5px">Process inventory, data boundaries, pilot design, and an AI usage policy. Starts with a 30-minute scoping call.</p>
+</div>
+
+<h2>What we publish here</h2>
+<p>Works, not articles. Tools you can run and evidence you can inspect.</p>
 <ul class="work">
   <li>
     <span class="name"><a href="https://github.com/AIArchLab/weirwright">weirwright</a></span>
-    <span class="desc">Executable change-control gates. Evidence in, verdict out.</span>
+    <span class="desc">Executable change-control gates. Evidence in, verdict out. MIT licensed.</span>
   </li>
   <li>
     <span class="name"><a href="https://github.com/AIArchLab/works">works</a></span>
-    <span class="desc">Finished work: governance tools and delivery systems, each with its verification record.</span>
-  </li>
-  <li>
-    <span class="name"><a href="https://github.com/AIArchLab/recruitflow-core-portfolio">recruitflow-core</a></span>
-    <span class="desc">Hiring workflow engine. Pure-function state machine with weighted scoring.</span>
+    <span class="desc">Finished works, one folder per work, each with its own README and tests. MIT licensed.</span>
   </li>
   <li>
     <span class="name"><a href="splice-handoff.html">Splice Handoff Broker</a></span>
@@ -85,22 +87,17 @@
   </li>
 </ul>
 
-<h2>Who is behind it</h2>
-<p>Allen Chia. Twenty-seven years in technology, most of it inside banks and insurers in Taiwan, Japan and China. VP at HSBC Taiwan, Head of Technology Services at Prudential Taiwan, and the most senior IT person at LINE Bank's preparatory office before that bank had a licence. Building AI systems since 2020.</p>
-
-<div class="zh">
-  中文摘要：把 AI agent 放進需要被稽核的組織裡。交付的定義不是「跑給你看」，而是「別人能重跑並得到同樣結果」。做過的東西都附可重跑指令與雜湊，第三方自己驗。
-</div>
-
-<h2>Contact</h2>
-<p class="meta">
-  <b>email</b> &nbsp;aiarchlabtw@gmail.com<br>
-  <b>github</b> &nbsp;github.com/AIArchLab<br>
-  <b>profile</b> &nbsp;linkedin.com/in/allenchia
+<h2>Studio</h2>
+<p>AIArchLab is led by its Founder and run as a small flat studio.</p>
+<p>
+  Web &nbsp;<a href="https://www.tasker.com.tw/workroom/aiarchlab">tasker.com.tw/workroom/aiarchlab</a><br>
+  GitHub &nbsp;<a href="https://github.com/AIArchLab">github.com/AIArchLab</a>
 </p>
 
+<div class="zh">中文摘要：AIArchLab 是一間獨立工作室，做企業導入 AI。做法是把治理寫成可執行的檢查，先在小規模試點證明可行，再放大。公開資料不指名客戶、成員與預算。</div>
+
 <footer>
-  <span>AIArchLab &middot; AI Architecture Laboratory &middot; Taipei, Taiwan</span>
+  <span>AIArchLab &middot; Architecture, Development, and Governance with AI Agent Team</span>
   <span><a href="https://github.com/AIArchLab">github.com/AIArchLab</a></span>
 </footer>
 
